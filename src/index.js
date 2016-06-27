@@ -13,14 +13,23 @@ sky.style.width = WIDTH;
 sky.style.height = HEIGHT;
 
 
-let starts = [];
 //create starting points
+let starts = [];
 for (let i = 0; i < boids; i++) {
 	let rand = 30 * (Math.random().toFixed(2));
 	let startX = (WIDTH/2) + rand;
 	let startY = (HEIGHT/2) + rand;
 	starts.push([startX, startY]);
-}	
+}
+//create starting velocity vectors
+let vectors = [];
+for (let i = 0; i < boids; i++) {
+	let angle = Math.PI * 2 * (Math.random().toFixed(2));
+	let cos = Math.cos(angle);
+	let sin = Math.sin(angle);
+	vectors.push([cos, sin]);
+}
+console.log(vectors);
 
 //create skyCanvas
 let skySvg = d3.select("#sky")
