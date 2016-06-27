@@ -1,35 +1,17 @@
 import './style.scss';
 import d3 from 'd3';
+import Boid from './boid.js';
 
 console.log(d3);
 
 //setup constants
 export const WIDTH = 600;
 export const HEIGHT = 400;
-const boids = 3;
+const boidCount = 3;
 //setup screen
 let sky = document.getElementById('sky');
 sky.style.width = WIDTH;
 sky.style.height = HEIGHT;
-
-
-//create starting points
-let starts = [];
-for (let i = 0; i < boids; i++) {
-	let rand = 50 * (Math.random().toFixed(2));
-	let startX = (WIDTH/2) + rand;
-	let startY = (HEIGHT/2) + rand;
-	starts.push([startX, startY]);
-}
-//create starting velocity vectors
-let vectors = [];
-for (let i = 0; i < boids; i++) {
-	let angle = Math.PI * 2 * (Math.random().toFixed(2));
-	let cos = Math.cos(angle);
-	let sin = Math.sin(angle);
-	vectors.push([cos, sin]);
-}
-console.log(vectors);
 
 //create skyCanvas
 let skySvg = d3.select("#sky")
@@ -39,26 +21,32 @@ let skySvg = d3.select("#sky")
 				.attr('class', 'skySvg')
 
 
-//append starting points
-starts.forEach((coords, i) => {
-	console.log(coords);
-	skySvg
-		.append('circle')
-		.attr('cx', coords[0])
-		.attr('cy', coords[1])
-		.attr('r', 10)
-		.attr('fill', '#eee');
 
-	skySvg
-		.append('circle')
-		.attr('cx', coords[0]+ (10 * vectors[i][0]))
-		.attr('cy', coords[1]+ (10 * vectors[i][1]))
-		.attr('r', 3)
-		.attr('fill', 'red');
-});
+setInterval(() => {
+	//append starting points
 
-//apply boundary conditions to boids
-const applyBC = function(boidCoords){
-	let dR = 2;
+	let boids = [];
 
-}	
+	for (let i = 0; i < boidCount; i++) {
+		let boid = new Boid(i)
+		boids.push(boid);
+	}
+
+	skySvg.selectAll('*').remove();
+	boids.forEach((boid, i) => {
+		skySvg
+			.append('circle')
+			.attr('cx', boid.coords[0])
+			.attr('cy', boid.coords[1])
+			.attr('r', 10)
+			.attr('fill', '#eee');
+
+		skySvg
+			.append('circle')
+			.attr('cx', boid.coords[0] + (10 * boid.vectors[0]))
+			.attr('cy', boid.coords[1] + (10 * boid.vectors[1]))
+			.attr('r', 3)
+			.attr('fill', 'red');
+	});
+
+}, 500)

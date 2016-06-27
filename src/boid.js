@@ -2,11 +2,30 @@ import { WIDTH, HEIGHT } from './index.js';
 
 
 export default class Boid {
-	constructor(startCoords, startVector) {
-		this.coords = startCoords,
-		this.vectors = startVectors
+	constructor(id) {
+		this.id = id;
+		this.coords = this.generateStartCoords(),
+		this.vectors = this.generateStartVectors()
+		console.log(' ')
+		console.log('----------------------')
+		console.log('Boid ' + this.id + ' created')
+		console.log(this.coords);
+		console.log(this.vectors);
+		console.log('----------------------')
+	}
 
-		console.log(this);
+	generateStartCoords() {
+		let rand = 50 * (Math.random().toFixed(2));
+		let startX = (WIDTH/2) + rand;
+		let startY = (HEIGHT/2) + rand;
+		return [startX, startY];
+	}
+
+	generateStartVectors() {
+		let angle = Math.PI * 2 * (Math.random().toFixed(2));
+		let cos = Math.cos(angle);
+		let sin = Math.sin(angle);
+		return [cos, sin];
 	}
 
 	//apply boundary conditions to boids
@@ -24,3 +43,4 @@ export default class Boid {
 		}
 	}	
 }
+
