@@ -33,8 +33,10 @@ let calculateDistances = function(boids) {
 			let dx = x2 - x1;
 			let dy = y2 - y1;
 			let distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-			if (distance > 0) {
-				distances.push(distance);
+			if (distance > 10) {
+				distances.push(false);
+			} else {
+				distances.push(true);
 			}
 			i++;
 		}
