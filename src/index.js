@@ -7,7 +7,7 @@ console.log(d3);
 //setup constants
 export const WIDTH = 600;
 export const HEIGHT = 400;
-const boidCount = 10;
+const boidCount = 6;
 //setup screen
 let sky = document.getElementById('sky');
 sky.style.width = WIDTH;
@@ -22,9 +22,9 @@ let skySvg = d3.select("#sky")
 
 
 let calculateDistances = function(boids) {
-
-	boids.forEach((currentBoid) => {
-		for (let i = 0; i < boidCount; i++) {
+	let distances = [];
+	boids.forEach((currentBoid, i) => {
+		while (i < boidCount) {
 			let x1 = currentBoid.coords[0];
 			let y1 = currentBoid.coords[1];
 			let x2 = boids[i].coords[0];
@@ -34,13 +34,18 @@ let calculateDistances = function(boids) {
 			let dy = y2 - y1;
 			let distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
 			if (distance > 0) {
-				// console.log('Distance: ' + distance + ' pixels');
+				distances.push(distance);
 			}
+			i++;
 		}
 	})
+
+	return distances;
 }
 
 
+
+setInterval(() => {
 	let boids = [];
 
 	for (let i = 0; i < boidCount; i++) {
@@ -65,6 +70,8 @@ let calculateDistances = function(boids) {
 			.attr('fill', 'red');
 	});
 
-	calculateDistances(boids);
+	let currentDistances = calculateDistances(boids);
+	console.log(currentDistances)
 	
+}, 500)
 
