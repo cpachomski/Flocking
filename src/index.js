@@ -3,7 +3,6 @@ import d3 from 'd3';
 import math from 'mathjs';
 import Boid from './boid.js';
 
-console.log(math.dot);
 
 //setup constants
 export const WIDTH = 600;
@@ -84,5 +83,5 @@ setInterval(() => {
 
 	// let currentDistances = calculateDistances(boids);
 	
-}, 10)
+}, 500)
 
