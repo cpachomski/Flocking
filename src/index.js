@@ -1,13 +1,15 @@
 import './style.scss';
 import d3 from 'd3';
+import math from 'mathjs';
 import Boid from './boid.js';
 
-console.log(d3);
+console.log(math.dot);
 
 //setup constants
 export const WIDTH = 600;
 export const HEIGHT = 400;
-const boidCount = 6;
+export const RADIUS = 10;
+const boidCount = 3;
 //setup screen
 let sky = document.getElementById('sky');
 sky.style.width = WIDTH;
@@ -20,32 +22,7 @@ let skySvg = d3.select("#sky")
 				.attr('height', HEIGHT)
 				.attr('class', 'skySvg')
 
-
-let calculateDistances = function(boids) {
-	let distances = [];
-	boids.forEach((currentBoid, i) => {
-		while (i < boidCount) {
-			let x1 = currentBoid.coords[0];
-			let y1 = currentBoid.coords[1];
-			let x2 = boids[i].coords[0];
-			let y2 = boids[i].coords[1];
-
-			let dx = x2 - x1;
-			let dy = y2 - y1;
-			let distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-			if (distance > 10) {
-				distances.push(false);
-			} else {
-				distances.push(true);
-			}
-			i++;
-		}
-	})
-
-	return distances;
-}
-
-
+//create boids
 let boids = [];
 
 for (let i = 0; i < boidCount; i++) {
@@ -53,11 +30,42 @@ for (let i = 0; i < boidCount; i++) {
 	boids.push(boid);
 }
 
+
+// let calculateDistances = function(boids) {
+// 	let distances = [];
+// 	boids.forEach((currentBoid, i) => {
+// 		let boidDistances = [];
+
+// 		boids.forEach((boid) => {
+
+// 			let x1 = currentBoid.coords[0];
+// 			let y1 = currentBoid.coords[1];
+// 			let x2 = boid.coords[0];
+// 			let y2 = boid.coords[1];
+
+// 			let dx = x2 - x1;
+// 			let dy = y2 - y1;
+// 			let distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
+// 			if (distance > RADIUS) {
+// 				boidDistances.push(false);
+// 			} else {
+// 				boidDistances.push(true);
+// 			}
+// 		})
+// 		console.log(boidDistances);
+// 		distances.push(boidDistances);
+// 	})
+// 	return distances;
+// }
+
+
+
 setInterval(() => {
 
 	skySvg.selectAll('*').remove();
 	boids.forEach((boid, i) => {
-		boid.generateNextCoords();
+
+		boid.tick(boids);
 
 		skySvg
 			.append('circle')
@@ -74,7 +82,7 @@ setInterval(() => {
 			.attr('fill', 'red');
 	});
 
-	let currentDistances = calculateDistances(boids);
+	// let currentDistances = calculateDistances(boids);
 	
 }, 10)
 
