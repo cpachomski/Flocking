@@ -46,17 +46,19 @@ let calculateDistances = function(boids) {
 }
 
 
+let boids = [];
+
+for (let i = 0; i < boidCount; i++) {
+	let boid = new Boid(i)
+	boids.push(boid);
+}
 
 setInterval(() => {
-	let boids = [];
-
-	for (let i = 0; i < boidCount; i++) {
-		let boid = new Boid(i)
-		boids.push(boid);
-	}
 
 	skySvg.selectAll('*').remove();
 	boids.forEach((boid, i) => {
+		boid.generateNextCoords();
+
 		skySvg
 			.append('circle')
 			.attr('cx', boid.coords[0])
@@ -73,7 +75,6 @@ setInterval(() => {
 	});
 
 	let currentDistances = calculateDistances(boids);
-	console.log(currentDistances)
 	
-}, 500)
+}, 10)
 

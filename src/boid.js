@@ -6,12 +6,13 @@ export default class Boid {
 		this.id = id;
 		this.coords = this.generateStartCoords(),
 		this.vectors = this.generateStartVectors()
-		console.log(' ')
-		console.log('----------------------')
-		console.log('Boid ' + this.id + ' created')
-		console.log(this.coords);
-		console.log(this.vectors);
-		console.log('----------------------')
+		this.maxVector = 2;
+		// console.log(' ')
+		// console.log('----------------------')
+		// console.log('Boid ' + this.id + ' created')
+		// console.log(this.coords);
+		// console.log(this.vectors);
+		// console.log('----------------------')
 	}
 
 	generateStartCoords() {
@@ -26,6 +27,12 @@ export default class Boid {
 		let cos = Math.cos(angle);
 		let sin = Math.sin(angle);
 		return [cos, sin];
+	}
+
+	generateNextCoords() {
+		this.coords[0] = this.coords[0] + this.vectors[0];
+		this.coords[1] = this.coords[1] + this.vectors[1];
+		this.applyBC();
 	}
 
 	//apply boundary conditions to boids
