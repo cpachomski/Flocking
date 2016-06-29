@@ -1,2 +1,7 @@
-*My Personal Flocking Algorithm.
-**This was fun to make.
+#Flocking
+
+
+### JS flocking algorithm
+
+*es6
+*webpack
