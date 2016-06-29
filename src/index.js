@@ -5,10 +5,10 @@ import Boid from './boid.js';
 
 
 //setup constants
-export const WIDTH = 600;
-export const HEIGHT = 400;
+export const WIDTH = window.innerHeight;
+export const HEIGHT = window.innerWidth;
 export const RADIUS = 10;
-const boidCount = 3;
+const boidCount = 100;
 //setup screen
 let sky = document.getElementById('sky');
 sky.style.width = WIDTH;
@@ -29,59 +29,27 @@ for (let i = 0; i < boidCount; i++) {
 	boids.push(boid);
 }
 
-
-// let calculateDistances = function(boids) {
-// 	let distances = [];
-// 	boids.forEach((currentBoid, i) => {
-// 		let boidDistances = [];
-
-// 		boids.forEach((boid) => {
-
-// 			let x1 = currentBoid.coords[0];
-// 			let y1 = currentBoid.coords[1];
-// 			let x2 = boid.coords[0];
-// 			let y2 = boid.coords[1];
-
-// 			let dx = x2 - x1;
-// 			let dy = y2 - y1;
-// 			let distance = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-// 			if (distance > RADIUS) {
-// 				boidDistances.push(false);
-// 			} else {
-// 				boidDistances.push(true);
-// 			}
-// 		})
-// 		console.log(boidDistances);
-// 		distances.push(boidDistances);
-// 	})
-// 	return distances;
-// }
-
-
-
 setInterval(() => {
 
 	skySvg.selectAll('*').remove();
 	boids.forEach((boid, i) => {
 
-		boid.tick(boids);
 
 		skySvg
 			.append('circle')
 			.attr('cx', boid.coords[0])
 			.attr('cy', boid.coords[1])
-			.attr('r', 10)
+			.attr('r', 1)
 			.attr('fill', '#eee');
 
 		skySvg
 			.append('circle')
 			.attr('cx', boid.coords[0] + (10 * boid.vectors[0]))
 			.attr('cy', boid.coords[1] + (10 * boid.vectors[1]))
-			.attr('r', 3)
+			.attr('r', 1)
 			.attr('fill', 'red');
+		boid.tick(boids);
 	});
-
-	// let currentDistances = calculateDistances(boids);
 	
-}, 500)
+}, 50)
 
