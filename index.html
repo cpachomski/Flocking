@@ -3,10 +3,28 @@
     <title>Chris Pachomski</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+      body {
+        background: #333;
+      }
+      #title{
+        position: fixed;
+        top: 40%;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        color: white !important;
+      }
     </style>
   </head>
   <body>
     <div id='sky'></div>
+    <div id='title'>
+      <h1>Flocking</h1>
+      <h2>by Chris Pachomski</h2>
+    </div>
     <script src="/dist/bundle.js"></script>
   </body>
 </html>

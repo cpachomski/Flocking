@@ -35,19 +35,19 @@ setInterval(() => {
 	boids.forEach((boid, i) => {
 
 
-		skySvg
-			.append('circle')
-			.attr('cx', boid.coords[0])
-			.attr('cy', boid.coords[1])
-			.attr('r', 1)
-			.attr('fill', '#eee');
+		// skySvg
+		// 	.append('circle')
+		// 	.attr('cx', boid.coords[0])
+		// 	.attr('cy', boid.coords[1])
+		// 	.attr('r', 1)
+		// 	.attr('fill', '#eee');
 
 		skySvg
 			.append('circle')
 			.attr('cx', boid.coords[0] + (10 * boid.vectors[0]))
 			.attr('cy', boid.coords[1] + (10 * boid.vectors[1]))
-			.attr('r', 1)
-			.attr('fill', 'red');
+			.attr('r', 2)
+			.attr('fill', '#fff');
 		boid.tick(boids);
 	});
 	
