@@ -2,11 +2,14 @@
   <head>
     <title>Chris Pachomski</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'/>
+    <link href="https://fonts.googleapis.com/css?family=Amatica+SC|Bangers|Karla|Mitr" rel="stylesheet">
     <style>
       body {
         background: #333;
       }
       #title{
+        text-align: center !important;
         position: fixed;
         top: 40%;
         left: 50%;
@@ -16,6 +19,19 @@
         -ms-transform: translateX(-50%);
         -o-transform: translateX(-50%);
         color: white !important;
+        /*font-family: 'Mitr', sans-serif;*/
+        font-family: 'Amatica SC', cursive;
+        /*font-family: 'Karla', sans-serif;*/
+        /*font-family: 'Bangers', cursive;*/
+      }
+      h1 {
+        font-size: 70px;
+      }
+      #title a, i {
+        color: white !important;
+        font-size: 50px;
+        display: block;
+        text-decoration: none !important;
       }
     </style>
   </head>
@@ -24,6 +40,7 @@
     <div id='title'>
       <h1>Flocking</h1>
       <h2>by Chris Pachomski</h2>
+      <a href=""><i class="fa fa-github" aria-hidden="true"></i></a>
     </div>
     <script src="bundle.js"></script>
   </body>
