@@ -13,13 +13,13 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/dist/'
   },
-  // plugins: [
+  plugins: [
   //   new webpack.HotModuleReplacementPlugin(),
-  //   new webpack.optimize.UglifyJsPlugin({
-  //     include: /\.js$/,
-  //     minimize: true
-  //   })
-  // ],
+    new webpack.optimize.UglifyJsPlugin({
+      include: /\.js$/,
+      minimize: true
+    })
+  ],
   module: {
     loaders: [
       {
