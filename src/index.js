@@ -7,8 +7,7 @@ import Boid from './boid.js';
 //setup constants
 export const WIDTH = window.innerHeight;
 export const HEIGHT = window.innerWidth;
-console.log(WIDTH);
-export const RADIUS = 10;
+export const RADIUS = 2;
 const boidCount = 100;
 
 //create skyCanvas
@@ -33,7 +32,7 @@ setInterval(() => {
 			.append('circle')
 			.attr('cx', boid.coords[0] + (10 * boid.vectors[0]))
 			.attr('cy', boid.coords[1] + (10 * boid.vectors[1]))
-			.attr('r', 2)
+			.attr('r', RADIUS)
 			.attr('fill', '#fff');
 		boid.tick(boids);
 	});
