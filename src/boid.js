@@ -1,4 +1,10 @@
-import { WIDTH, HEIGHT } from './index.js';
+let WIDTH = window.innerWidth;
+let HEIGHT = window.innerHeight;
+
+window.onresize = function(){
+	WIDTH = window.innerWidth;
+	HEIGHT = window.innerHeight;
+};
 
 
 export default class Boid {
