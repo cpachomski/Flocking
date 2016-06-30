@@ -7,18 +7,15 @@ import Boid from './boid.js';
 //setup constants
 export const WIDTH = window.innerHeight;
 export const HEIGHT = window.innerWidth;
+console.log(WIDTH);
 export const RADIUS = 10;
 const boidCount = 100;
-//setup screen
-let sky = document.getElementById('sky');
-sky.style.width = WIDTH;
-sky.style.height = HEIGHT;
 
 //create skyCanvas
 let skySvg = d3.select("#sky")
 				.append('svg')
-				.attr('width', WIDTH)
-				.attr('height', HEIGHT)
+				.attr('width', '100%')
+				.attr('height', '100%')
 				.attr('class', 'skySvg')
 
 //create boids
@@ -30,18 +27,8 @@ for (let i = 0; i < boidCount; i++) {
 }
 
 setInterval(() => {
-
 	skySvg.selectAll('*').remove();
 	boids.forEach((boid, i) => {
-
-
-		// skySvg
-		// 	.append('circle')
-		// 	.attr('cx', boid.coords[0])
-		// 	.attr('cy', boid.coords[1])
-		// 	.attr('r', 1)
-		// 	.attr('fill', '#eee');
-
 		skySvg
 			.append('circle')
 			.attr('cx', boid.coords[0] + (10 * boid.vectors[0]))
