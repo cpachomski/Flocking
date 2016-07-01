@@ -5,10 +5,10 @@ import Boid from './boid.js';
 
 //create skyCanvas
 let skySvg = d3.select("#sky")
-				.append('svg')
-				.attr('width', '100%')
-				.attr('height', '100%')
-				.attr('id', 'skySvg')
+			.append('svg')
+			.attr('width', '100%')
+			.attr('height', '100%')
+			.attr('id', 'skySvg')
 
 export const RADIUS = 2;
 const boidCount = 100;
