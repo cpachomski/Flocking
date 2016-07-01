@@ -3,15 +3,17 @@ import d3 from 'd3';
 import math from 'mathjs';
 import Boid from './boid.js';
 
+
+export const RADIUS = 2;
+const boidCount = 100;
+
 //create skyCanvas
 let skySvg = d3.select("#sky")
 			.append('svg')
 			.attr('width', '100%')
 			.attr('height', '100%')
-			.attr('id', 'skySvg')
+			.attr('id', 'skySvg');
 
-export const RADIUS = 2;
-const boidCount = 100;
 //create boids
 let boids = [];
 
