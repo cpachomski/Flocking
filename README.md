@@ -1,7 +1,5 @@
-#Flocking
-###[http://flocking.surge.sh](http://flocking.surge.sh)
-
-### JS flocking algorithm
+# Flocking
+### JS flocking algorithm -> [http://flocking.surge.sh](http://flocking.surge.sh)
 
 by Chris Pachomski
 
